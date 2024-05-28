@@ -24,3 +24,18 @@ services:
       - mysql
     environment:
       PMA_HOST: mysql
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8000:80"  # Change the port if needed
+
+  admin_panel:
+    build: ./admin-panel
+    ports:
+      - "8001:80"  # Change the port if needed
+
+  api:
+    build: ./api
+    ports:
+      - "8002:80"  # Change the port if needed
