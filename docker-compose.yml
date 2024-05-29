@@ -1,21 +1,39 @@
 version: '3.9'
 
 services:
-  php-apache:
-    image: php:8.3-apache
+  nginx:
+    build: ./nginx
     ports:
-      - "80:80"
+      - "80:80"          # Frontend
+      - "8001:8001"      # Admin Panel
+      - "8002:8002"      # API
     volumes:
-      - ./src:/var/www/html
+      - ./frontend:/usr/share/nginx/html/frontend
+      - ./admin-panel:/usr/share/nginx/html/admin-panel
+      - ./api:/usr/share/nginx/html/api
     depends_on:
-      - mysql
+      - php
+
+  php:
+    build: .
+    volumes:
+      - ./frontend:/var/www/html/frontend
+      - ./admin-panel:/var/www/html/admin-panel
+      - ./api:/var/www/html/api
+      - ./src:/var/www/html/src
+    environment:
+      COMPOSER_ALLOW_SUPERUSER: 1
+    expose:
+      - "9000"
+
   mysql:
-    image: mysql
+    image: mysql:latest
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: my_database
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -24,18 +42,3 @@ services:
       - mysql
     environment:
       PMA_HOST: mysql
-
-  frontend:
-    build: ./frontend
-    ports:
-      - "8000:80"  # Change the port if needed
-
-  admin_panel:
-    build: ./admin-panel
-    ports:
-      - "8001:80"  # Change the port if needed
-
-  api:
-    build: ./api
-    ports:
-      - "8002:80"  # Change the port if needed
