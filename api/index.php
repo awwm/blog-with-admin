@@ -1,41 +1,39 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-use App\Controllers\UserController;
-use App\Database\Connection;
+use Admin\Config\Database;
+use Admin\Controllers\UserController;
 
-header('Content-Type: application/json');
-$method = $_SERVER['REQUEST_METHOD'];
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$input = json_decode(file_get_contents('php://input'), true);
+// Get the database connection
+$database = new Database();
+$db = $database->getConnection();
 
-$connection = new Connection();
-$db = $connection->getConnection();
+// Instantiate the UserController
 $userController = new UserController($db);
 
-$response = [];
+// Get the request method and data
+$method = $_SERVER['REQUEST_METHOD'];
+$request = json_decode(file_get_contents('php://input'), true);
 
-switch ($path) {
-    case '/signup':
-        if ($method === 'POST') {
-            $response = $userController->signup($input);
-        } else {
-            $response = ['success' => false, 'message' => 'Invalid request method.'];
+// Determine the endpoint and call the appropriate controller method
+$endpoint = $_GET['endpoint'] ?? '';
+
+switch ($endpoint) {
+    case 'signup':
+        if ($method == 'POST') {
+            $response = $userController->signup($request);
         }
         break;
-
-    case '/login':
-        if ($method === 'POST') {
-            $response = $userController->login($input);
-        } else {
-            $response = ['success' => false, 'message' => 'Invalid request method.'];
+    case 'login':
+        if ($method == 'POST') {
+            $response = $userController->login($request);
         }
         break;
-
     default:
-        $response = ['success' => false, 'message' => 'Endpoint not found.'];
+        $response = ['success' => false, 'message' => 'Invalid endpoint.'];
         break;
 }
 
+header('Content-Type: application/json');
 echo json_encode($response);
 ?>

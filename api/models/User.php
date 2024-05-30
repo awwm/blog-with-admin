@@ -1,24 +1,37 @@
 <?php
-namespace App\Models;
+namespace Admin\Models;
 
 use PDO;
 
 class User {
-    private $db;
+    private $conn;
+    private $table = 'users';
 
     public function __construct($db) {
-        $this->db = $db;
+        $this->conn = $db;
     }
 
     public function createUser($username, $email, $password, $role) {
-        $stmt = $this->db->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
-        return $stmt->execute([$username, $email, $password, $role]);
+        $query = "INSERT INTO " . $this->table . " (username, email, password, role, created_at) VALUES (:username, :email, :password, :role, NOW())";
+        
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':role', $role);
+
+        return $stmt->execute();
     }
 
     public function getUserByUsername($username) {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->execute([$username]);
-        return $stmt->fetch();
+        $query = "SELECT * FROM " . $this->table . " WHERE username = :username LIMIT 1";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>
