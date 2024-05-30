@@ -1,14 +1,28 @@
-# Use the official PHP image
-FROM php:8.3-fpm
+# Use an official PHP runtime as a parent image
+FROM php:8.3-apache
 
-# Set the working directory
+# Install necessary extensions and other dependencies
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    unzip \
+    git \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql
+
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+
+# Set working directory
 WORKDIR /var/www/html
 
-# Copy the entire project
-COPY . /var/www/html
+# Copy application files
+COPY . .
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    && rm -rf /var/lib/apt/lists/*
+# Expose port 80
+EXPOSE 80
+
+# Start Apache server
+CMD ["apache2-foreground"]

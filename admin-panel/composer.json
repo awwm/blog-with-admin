@@ -5,9 +5,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "api/",
-            "Admin\\": "admin-panel/src/",
-            "Frontend\\": "frontend/src/"
+            "Admin\\": "src/"
         }
     },
     "scripts": {

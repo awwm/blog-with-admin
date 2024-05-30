@@ -1,44 +1,85 @@
 version: '3.9'
 
 services:
-  nginx:
-    build: ./nginx
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: frontend
     ports:
-      - "80:80"          # Frontend
-      - "8001:8001"      # Admin Panel
-      - "8002:8002"      # API
+      - "8080:80"
     volumes:
-      - ./frontend:/usr/share/nginx/html/frontend
-      - ./admin-panel:/usr/share/nginx/html/admin-panel
-      - ./api:/usr/share/nginx/html/api
-    depends_on:
-      - php
-
-  php:
-    build: .
-    volumes:
-      - ./frontend:/var/www/html/frontend
-      - ./admin-panel:/var/www/html/admin-panel
-      - ./api:/var/www/html/api
-      - ./src:/var/www/html/src
+      - ./frontend:/var/www/html
     environment:
-      COMPOSER_ALLOW_SUPERUSER: 1
-    expose:
-      - "9000"
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  admin-panel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: admin-panel
+    ports:
+      - "8081:80"
+    volumes:
+      - ./admin-panel:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api
+    ports:
+      - "8082:80"
+    volumes:
+      - ./api:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - app-network
 
   mysql:
-    image: mysql:latest
-    ports:
-      - "3306:3306"
+    image: mysql:8.0
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: my_database
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+    networks:
+      - app-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    ports:
-      - "8080:80"
-    depends_on:
-      - mysql
+    container_name: phpmyadmin
     environment:
       PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8083:80"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:
+    driver: bridge
