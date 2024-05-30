@@ -1,19 +1,21 @@
 <?php
-    namespace Admin\Components;
-    
-    class Navigation {
-        public function render($loggedIn) {
-            if ($loggedIn) {
-                ?>
-                <nav>
-                    <ul>
-                        <li><a href="dashboard.php">Dashboard</a></li>
-                        <li><a href="posts.php">Posts</a></li>
-                        <li><a href="profile.php">Profile</a></li>
-                    </ul>
-                </nav>
-                <?php
-            }
-        }
+namespace Admin\Components;
+
+class Navigation {
+    public function render($loggedIn) {
+        ?>
+        <nav>
+            <ul>
+                <?php if ($loggedIn): ?>
+                    <li><a href="index.php?page=dashboard">Dashboard</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="index.php?page=login">Login</a></li>
+                    <li><a href="index.php?page=signup">Sign Up</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+        <?php
     }
+}
 ?>

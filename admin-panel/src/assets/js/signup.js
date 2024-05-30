@@ -1,19 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
 
-    loginForm.addEventListener('submit', function(event) {
+    signupForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const formData = new FormData(loginForm);
+        const formData = new FormData(signupForm);
         const data = Object.fromEntries(formData.entries());
 
         // Validate form data
-        if (!data.username || !data.password) {
+        if (!data.username || !data.email || !data.password || !data.role) {
             showToast('All fields are required.', 'error');
             return;
         }
 
-        fetch('http://localhost:8082/login', {
+        if (!validateEmail(data.email)) {
+            showToast('Invalid email format.', 'error');
+            return;
+        }
+
+        fetch('http://localhost:8082/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,20 +28,24 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                showToast('Login successful!', 'success');
-                localStorage.setItem('token', data.token);
+                showToast('Signup successful! Please log in.', 'success');
                 setTimeout(() => {
-                    window.location.href = 'dashboard.php'; // Redirect to dashboard or home page
+                    window.location.href = 'login.php';
                 }, 2000);
             } else {
-                showToast('Login failed: ' + data.message, 'error');
+                showToast('Signup failed: ' + data.message, 'error');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            showToast('An error occurred during login. Please try again.', 'error');
+            showToast('An error occurred during signup. Please try again.', 'error');
         });
     });
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
 
     function showToast(message, type) {
         Toastify({

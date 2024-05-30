@@ -1,50 +1,24 @@
 <?php
+namespace App\Models;
+
+use PDO;
+
 class User {
-    // Database connection and table name
-    private $conn;
-    private $table_name = "users";
+    private $db;
 
-    // Object properties
-    public $id;
-    public $username;
-    public $password;
-    public $role;
-    public $created_at;
-
-    // Constructor with $db as database connection
     public function __construct($db) {
-        $this->conn = $db;
+        $this->db = $db;
     }
 
-    // Create user
-    public function create() {
-        // Insert query
-        $query = "INSERT INTO " . $this->table_name . " (username, password, role) VALUES (:username, :password, :role)";
-
-        // Prepare statement
-        $stmt = $this->conn->prepare($query);
-
-        // Sanitize input
-        $this->username = htmlspecialchars(strip_tags($this->username));
-        $this->password = htmlspecialchars(strip_tags($this->password));
-        $this->role = htmlspecialchars(strip_tags($this->role));
-
-        // Bind parameters
-        $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":password", $this->password);
-        $stmt->bindParam(":role", $this->role);
-
-        // Execute query
-        if ($stmt->execute()) {
-            return true;
-        }
-
-        // Print error if something goes wrong
-        printf("Error: %s.\n", $stmt->error);
-
-        return false;
+    public function createUser($username, $email, $password, $role) {
+        $stmt = $this->db->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
+        return $stmt->execute([$username, $email, $password, $role]);
     }
 
-    // Other CRUD methods can be implemented similarly
+    public function getUserByUsername($username) {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->execute([$username]);
+        return $stmt->fetch();
+    }
 }
 ?>

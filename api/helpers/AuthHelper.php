@@ -1,38 +1,32 @@
 <?php
+namespace App\Helpers;
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
 class AuthHelper {
-    // Start session
-    public static function startSession() {
-        session_start();
+    private static $secretKey = 'your_secret_key';
+    private static $algorithm = 'HS256';
+
+    public static function generateJWT($data) {
+        $payload = [
+            'iss' => 'http://localhost:8082',
+            'aud' => 'http://localhost:8082',
+            'iat' => time(),
+            'nbf' => time(),
+            'exp' => time() + (60 * 60), // Token expires in 1 hour
+            'data' => $data
+        ];
+        return JWT::encode($payload, self::$secretKey, self::$algorithm);
     }
 
-    // Check if user is logged in
-    public static function isLoggedIn() {
-        return isset($_SESSION['user_id']);
-    }
-
-    // Log in user
-    public static function login($user_id) {
-        // Start session if not already started
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+    public static function validateJWT($jwt) {
+        try {
+            $decoded = JWT::decode($jwt, new Key(self::$secretKey, self::$algorithm));
+            return (array) $decoded->data;
+        } catch (\Exception $e) {
+            return null;
         }
-
-        // Set user ID in session
-        $_SESSION['user_id'] = $user_id;
-    }
-
-    // Log out user
-    public static function logout() {
-        // Start session if not already started
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-
-        // Unset user ID from session
-        unset($_SESSION['user_id']);
-
-        // Destroy session
-        session_destroy();
     }
 }
 ?>

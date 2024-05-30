@@ -1,33 +1,56 @@
 <?php
-require_once '../config/database.php';
-require_once '../models/User.php';
+namespace App\Controllers;
+
+use App\Models\User;
+use App\Helpers\AuthHelper;
+use PDO;
 
 class UserController {
-    // Database connection
-    private $conn;
-    private $user;
+    private $db;
+    private $userModel;
 
-    public function __construct() {
-        $database = new Database();
-        $this->conn = $database->getConnection();
-        $this->user = new User($this->conn);
+    public function __construct($db) {
+        $this->db = $db;
+        $this->userModel = new User($db);
     }
 
-    // Create a new user
-    public function create($data) {
-        // Set user properties
-        $this->user->username = $data['username'];
-        $this->user->password = $data['password'];
-        $this->user->role = $data['role'];
+    public function signup($request) {
+        $username = $request['username'] ?? '';
+        $email = $request['email'] ?? '';
+        $password = $request['password'] ?? '';
+        $role = $request['role'] ?? 'editor';
 
-        // Create the user
-        if ($this->user->create()) {
-            return array("message" => "User created successfully.");
+        if (empty($username) || empty($email) || empty($password)) {
+            return ['success' => false, 'message' => 'All fields are required.'];
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $result = $this->userModel->createUser($username, $email, $hashedPassword, $role);
+
+        if ($result) {
+            $token = AuthHelper::generateJWT(['username' => $username, 'email' => $email, 'role' => $role]);
+            return ['success' => true, 'message' => 'User created successfully.', 'token' => $token];
         } else {
-            return array("error" => "User creation failed.");
+            return ['success' => false, 'message' => 'Failed to create user.'];
         }
     }
 
-    // Other CRUD operations can be implemented similarly
+    public function login($request) {
+        $username = $request['username'] ?? '';
+        $password = $request['password'] ?? '';
+
+        if (empty($username) || empty($password)) {
+            return ['success' => false, 'message' => 'All fields are required.'];
+        }
+
+        $userData = $this->userModel->getUserByUsername($username);
+
+        if ($userData && password_verify($password, $userData['password'])) {
+            $token = AuthHelper::generateJWT(['username' => $userData['username'], 'email' => $userData['email'], 'role' => $userData['role']]);
+            return ['success' => true, 'message' => 'Login successful.', 'token' => $token];
+        } else {
+            return ['success' => false, 'message' => 'Invalid username or password.'];
+        }
+    }
 }
 ?>

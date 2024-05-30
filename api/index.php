@@ -1,52 +1,41 @@
 <?php
-// Include necessary files
-require_once 'config/database.php';
-require_once 'controllers/UserController.php';
-require_once 'controllers/PostController.php';
-require_once 'controllers/CommentController.php';
-require_once 'helpers/AuthHelper.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-// Create database connection
-$database = new Database();
-$db = $database->getConnection();
+use App\Controllers\UserController;
+use App\Database\Connection;
 
-// Instantiate controllers
-$userController = new UserController();
-$postController = new PostController();
-$commentController = new CommentController();
+header('Content-Type: application/json');
+$method = $_SERVER['REQUEST_METHOD'];
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$input = json_decode(file_get_contents('php://input'), true);
 
-// Get request method and endpoint
-$request_method = $_SERVER['REQUEST_METHOD'];
-$endpoint = isset($_GET['endpoint']) ? $_GET['endpoint'] : '';
+$connection = new Connection();
+$db = $connection->getConnection();
+$userController = new UserController($db);
 
-// Handle API requests based on request method and endpoint
-switch ($request_method) {
-    case 'POST':
-        if ($endpoint == 'users') {
-            // Create a new user
-            $data = json_decode(file_get_contents("php://input"), true);
-            echo json_encode($userController->create($data));
-        } elseif ($endpoint == 'posts') {
-            // Create a new post
-            $data = json_decode(file_get_contents("php://input"), true);
-            echo json_encode($postController->create($data));
-        } elseif ($endpoint == 'comments') {
-            // Create a new comment
-            $data = json_decode(file_get_contents("php://input"), true);
-            echo json_encode($commentController->create($data));
+$response = [];
+
+switch ($path) {
+    case '/signup':
+        if ($method === 'POST') {
+            $response = $userController->signup($input);
         } else {
-            // Endpoint not found
-            http_response_code(404);
-            echo json_encode(array("error" => "Endpoint not found."));
+            $response = ['success' => false, 'message' => 'Invalid request method.'];
         }
         break;
-    
-    // Handle other request methods (GET, PUT, DELETE) and endpoints similarly
-    
+
+    case '/login':
+        if ($method === 'POST') {
+            $response = $userController->login($input);
+        } else {
+            $response = ['success' => false, 'message' => 'Invalid request method.'];
+        }
+        break;
+
     default:
-        // Invalid request method
-        http_response_code(405);
-        echo json_encode(array("error" => "Invalid request method."));
+        $response = ['success' => false, 'message' => 'Endpoint not found.'];
         break;
 }
+
+echo json_encode($response);
 ?>
