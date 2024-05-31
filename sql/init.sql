@@ -27,4 +27,5 @@ CREATE TABLE IF NOT EXISTS comments (
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
 
-INSERT INTO users (username, password, role) VALUES ('admin', '$2y$10$5v4lHxM0wX8B7KL8XZI31ONv.Ed2G5ZaFqjF2tvgRDFBoG5oFGNfi', 'admin');
+INSERT INTO users (username, password, role) VALUES ('admin', '$2a$12$AOfkrEr2tY4okOxyWXF8F.dEb3pnhCiuzPJRdOwef5ha/f3gGX4SG', 'admin');
+-- password for testing is adminpassword

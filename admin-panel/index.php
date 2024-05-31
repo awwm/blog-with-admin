@@ -8,14 +8,28 @@ use Admin\Pages\SignupForm;
 use Admin\Pages\LoginForm;
 use Admin\Pages\DashboardContent;
 
+// Use the TokenHelper class
+use Helpers\TokenHelper;
+
 // Instantiate classes
 $header = new \Admin\Components\Header();
 $footer = new \Admin\Components\Footer();
 $navigation = new \Admin\Components\Navigation();
 $content = new \Admin\Views\Content();
 
-// Check login status
-$loggedIn = isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'];
+// Print all request headers for debugging
+foreach (getallheaders() as $name => $value) {
+    echo "$name: $value\n";
+}
+
+// Check if a token is present in the request
+$token = isset($_SERVER['HTTP_AUTHORIZATION']) ? $_SERVER['HTTP_AUTHORIZATION'] : '';
+
+// Debugging: Print or log the token to ensure its contents
+echo "Token: " . $token . "<br>";
+
+// Validate the token
+$loggedIn = TokenHelper::validateToken($token);
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 
 // Determine which page to display based on URL

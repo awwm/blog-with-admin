@@ -1,5 +1,5 @@
 <?php
-namespace Admin\Models;
+namespace App\Models;
 
 use PDO;
 

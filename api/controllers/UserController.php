@@ -46,7 +46,7 @@ class UserController {
         $userData = $this->userModel->getUserByUsername($username);
 
         if ($userData && password_verify($password, $userData['password'])) {
-            $token = AuthHelper::generateJWT(['username' => $userData['username'], 'email' => $userData['email'], 'role' => $userData['role']]);
+            $token = AuthHelper::generateJWT(['username' => $userData['username'], 'email' => $userData['email'] ?? '', 'role' => $userData['role']]);
             return ['success' => true, 'message' => 'Login successful.', 'token' => $token];
         } else {
             return ['success' => false, 'message' => 'Invalid username or password.'];

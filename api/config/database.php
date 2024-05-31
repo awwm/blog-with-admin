@@ -1,14 +1,14 @@
 <?php
-namespace Admin\Config;
+namespace App\Config;
 
 use PDO;
 use PDOException;
 
 class Database {
-    private $host = 'localhost';
+    private $host = 'mysql';
     private $db_name = 'blog';
-    private $username = 'root';
-    private $password = '';
+    private $username = 'user';
+    private $password = 'password';
     private $conn;
 
     public function getConnection() {

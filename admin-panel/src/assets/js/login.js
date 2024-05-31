@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        fetch('http://localhost:8082/login', {
+        fetch('http://localhost:8082/index.php?endpoint=login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,8 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data.success) {
                 showToast('Login successful!', 'success');
                 localStorage.setItem('token', data.token);
+                
                 setTimeout(() => {
-                    window.location.href = 'dashboard.php'; // Redirect to dashboard or home page
+                    console.log("Token:", data.token);
+                    window.location.href = 'index.php?page=dashboard'; // Redirect to dashboard or home page
                 }, 2000);
             } else {
                 showToast('Login failed: ' + data.message, 'error');

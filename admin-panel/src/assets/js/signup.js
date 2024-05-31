@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        fetch('http://localhost:8082/signup', {
+        fetch('http://localhost:8082/index.php?endpoint=signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data.success) {
                 showToast('Signup successful! Please log in.', 'success');
                 setTimeout(() => {
-                    window.location.href = 'login.php';
+                    window.location.href = 'index.php?page=login';
                 }, 2000);
             } else {
                 showToast('Signup failed: ' + data.message, 'error');
