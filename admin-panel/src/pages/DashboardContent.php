@@ -42,36 +42,6 @@ class DashboardContent {
 
     private function renderSortableTable($posts, $userRole) {
         // Render the sortable table HTML
-        ?>
-        <table id="postsTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <?php if ($userRole === 'admin'): ?>
-                        <th>Author</th>
-                    <?php endif; ?>
-                    <th>Date Posted</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if(count($posts) > 0) : ?>
-                    <?php foreach ($posts as $post): ?>
-                        <tr>
-                            <td><?php echo $post['id']; ?></td>
-                            <td><?php echo $post['title']; ?></td>
-                            <?php if ($userRole === 'admin'): ?>
-                                <td><?php echo $post['author']; ?></td>
-                            <?php endif; ?>
-                            <td><?php echo $post['created_at']; ?></td>
-                            <td><a href="index.php?page=editpost&id=<?php echo $post['id']; ?>">Edit</a></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
-        <script src="src/assets/js/dashboard.js"></script>
-        <?php
+        include __DIR__ . '/../views/dashboardTable.php';
     }
 }
