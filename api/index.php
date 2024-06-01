@@ -1,8 +1,11 @@
 <?php
+// Include the Composer autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Config\Database;
 use App\Controllers\UserController;
+use App\Controllers\PostController;
+use App\Router;
 
 // Start session
 session_start();
@@ -11,39 +14,28 @@ session_start();
 $database = new Database();
 $db = $database->getConnection();
 
-// Instantiate the UserController
+// Instantiate the controllers
 $userController = new UserController($db);
+$postController = new PostController($db);
 
-// Get the request method and data
+// Create a router instance
+$router = new Router();
+
+// Include route files
+include_once __DIR__ . '/routes/user_routes.php';
+include_once __DIR__ . '/routes/post_routes.php';
+
+// Get request method and URI
 $method = $_SERVER['REQUEST_METHOD'];
-$action = isset($_GET['action']) ? $_GET['action'] : null;
-$request = json_decode(file_get_contents('php://input'), true);
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Check if the action parameter is set
-if(isset($action)) {
-    switch ($action) {
-        case 'login':
-            if ($method === 'POST') {
-                $response = $userController->login($request);
-            } else {
-                $response = ['success' => false, 'message' => 'Invalid method for login'];
-            }
-            break;
-        case 'signup':
-            if ($method === 'POST') {
-                $response = $userController->signup($request);
-            } else {
-                $response = ['success' => false, 'message' => 'Invalid method for signup'];
-            }
-            break;
-        default:
-            $response = ['success' => false, 'message' => 'Invalid action'];
-            break;
-    }
-} else {
-    $response = ['success' => false, 'message' => 'No action specified'];
-}
+// Route the request
+$requestData = json_decode(file_get_contents('php://input'), true);
+$response = $router->route($method, $uri, $requestData);
 
+// Set the response headers
 header('Content-Type: application/json');
+
+// Output the response
 echo json_encode($response);
 ?>

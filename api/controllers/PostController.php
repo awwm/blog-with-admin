@@ -1,27 +1,32 @@
 <?php
-require_once '../config/database.php';
-require_once '../models/Post.php';
+namespace App\Controllers;
+
+use App\Models\Post;
+use PDO;
 
 class PostController {
     // Database connection
-    private $conn;
+    private $db;
     private $post;
 
-    public function __construct() {
-        $database = new Database();
-        $this->conn = $database->getConnection();
-        $this->post = new Post($this->conn);
+    public function __construct($db) {
+        $this->db = $db;
+        $this->post = new Post($db);
     }
 
     // Create a new post
-    public function create($data) {
+    public function create($request) {
         // Set post properties
-        $this->post->title = $data['title'];
-        $this->post->content = $data['content'];
-        $this->post->author = $data['author'];
+        $title = $request['title'];
+        $content = $request['content'];
+        $author = $request['author'];
+
+        if (empty($title) || empty($author)) {
+            return ['success' => false, 'message' => 'All fields are required.'];
+        }
 
         // Create the post
-        if ($this->post->create()) {
+        if ($result) {
             return array("message" => "Post created successfully.");
         } else {
             return array("error" => "Post creation failed.");

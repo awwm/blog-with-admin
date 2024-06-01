@@ -1,15 +1,12 @@
 <?php
+namespace App\Models;
+
+use PDO;
+
 class Post {
     // Database connection and table name
     private $conn;
-    private $table_name = "posts";
-
-    // Object properties
-    public $id;
-    public $title;
-    public $content;
-    public $author;
-    public $created_at;
+    private $table = "posts";
 
     // Constructor with $db as database connection
     public function __construct($db) {
@@ -25,24 +22,17 @@ class Post {
         $stmt = $this->conn->prepare($query);
 
         // Sanitize input
-        $this->title = htmlspecialchars(strip_tags($this->title));
-        $this->content = htmlspecialchars(strip_tags($this->content));
-        $this->author = htmlspecialchars(strip_tags($this->author));
+        $this->title = htmlspecialchars(strip_tags($title));
+        $this->content = htmlspecialchars(strip_tags($content));
+        $this->author = htmlspecialchars(strip_tags($author));
 
         // Bind parameters
-        $stmt->bindParam(":title", $this->title);
-        $stmt->bindParam(":content", $this->content);
-        $stmt->bindParam(":author", $this->author);
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":content", $content);
+        $stmt->bindParam(":author", $author);
 
         // Execute query
-        if ($stmt->execute()) {
-            return true;
-        }
-
-        // Print error if something goes wrong
-        printf("Error: %s.\n", $stmt->error);
-
-        return false;
+        return $stmt->execute();
     }
 
     // Other CRUD methods can be implemented similarly
