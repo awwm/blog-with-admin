@@ -31,15 +31,19 @@ class Router {
     public function route($method, $uri, $requestData) {
         foreach ($this->routes as $route) {
             $regex = $this->convertPathToRegex($route['path']);
-            if ($route['method'] === $method && preg_match($regex, $uri, $matches)) {
+            if ($regex !== null && $route['method'] === $method && preg_match($regex, $uri, $matches)) {
                 array_shift($matches);
-                return call_user_func_array($route['handler'], array_merge([$requestData], $matches));
+                return call_user_func_array($route['handler'], array_merge([$requestData], array_values($matches)));
             }
         }
         return ['success' => false, 'message' => 'Route not found'];
     }
 
     private function convertPathToRegex($path) {
+        if ($path === null) {
+            return '';
+        }
+
         return '@^' . preg_replace('/\{(\w+)\}/', '(?P<$1>[^/]+)', $path) . '$@';
     }
 }

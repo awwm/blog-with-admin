@@ -15,13 +15,20 @@ use Admin\Middleware\AuthMiddleware;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-use Admin\Pages\SignupForm;
-use Admin\Pages\LoginForm;
-use Admin\Pages\DashboardContent;
+//Components
 use Admin\Components\Header;
 use Admin\Components\Footer;
 use Admin\Components\Navigation;
+
+// Template
 use Admin\Views\Content;
+
+//Pages
+use Admin\Pages\SignupForm;
+use Admin\Pages\LoginForm;
+use Admin\Pages\DashboardContent;
+use Admin\Pages\EditPost;
+use Admin\Pages\AddNewPost;
 
 // Instantiate classes
 $header = new Header();
@@ -49,10 +56,26 @@ switch ($page) {
     case 'dashboard':
         $pageContent = new DashboardContent();
         break;
+    case 'editpost':
+        // Check if the 'id' parameter is set in the URL
+        if (isset($_GET['id'])) {
+            // Extract the 'id' from the URL parameters
+            $postId = $_GET['id'];
+            // Create an instance of the EditPost class and pass the postId to its constructor
+            $pageContent = new EditPost($postId);
+        } else {
+            // Handle the case where 'id' parameter is missing
+            echo "Error: Missing 'id' parameter.";
+            exit();
+        }
+        break;
     case 'signout':
         session_destroy();
         header('Location: index.php?page=login');
         exit;
+    case 'addnewpost':
+        $pageContent = new AddNewPost();
+        break;
     default:
         $pageContent = new LoginForm();
         break;

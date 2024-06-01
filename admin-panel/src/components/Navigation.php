@@ -8,6 +8,7 @@ class Navigation {
             <ul>
                 <?php if ($loggedIn): ?>
                     <li><a href="index.php?page=dashboard">Dashboard</a></li>
+                    <li><a href="index.php?page=addnewpost">Add New Post</a></li>
                     <li><a href="index.php?page=signout">Logout</a></li>
                 <?php else: ?>
                     <li><a href="index.php?page=login">Login</a></li>

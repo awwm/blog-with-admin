@@ -15,14 +15,15 @@ class DashboardContent {
 
         // Fetch posts data from the backend
         $apiUrl = $_ENV['API_URL'];
-        $postsEndpoint = $_ENV['POSTS_ENDPOINT']; // Adjust the endpoint according to your API
+        $postsEndpoint = $_ENV['POSTS_ENDPOINT'];
+        $userPostsEndpoint = $_ENV['USER_POSTS_ENDPOINT'];
         $url = $apiUrl . $postsEndpoint;
-        $userRole = $_SESSION['user_role'] ?? 'editor';
+        $userRole = $_SESSION['user_role'];
 
         if ($userRole === 'editor') {
             // Fetch only the editor's posts
             $userId = $_SESSION['user_id'] ?? '';
-            $url = $apiUrl . $postsEndpoint . '?user_id=' . $userId;
+            $url = $apiUrl . str_replace('{user_id}', $userId, $userPostsEndpoint);
         } else {
             // Fetch all posts with author information
             $url = $apiUrl . $postsEndpoint;
@@ -55,7 +56,7 @@ class DashboardContent {
                 </tr>
             </thead>
             <tbody>
-                <?php if(isset($posts['success']) && $posts['success'] === true) : ?>
+                <?php if(count($posts) > 0) : ?>
                     <?php foreach ($posts as $post): ?>
                         <tr>
                             <td><?php echo $post['id']; ?></td>
@@ -63,8 +64,8 @@ class DashboardContent {
                             <?php if ($userRole === 'admin'): ?>
                                 <td><?php echo $post['author']; ?></td>
                             <?php endif; ?>
-                            <td><?php echo $post['date_posted']; ?></td>
-                            <td><a href="edit_post.php?id=<?php echo $post['id']; ?>">Edit</a></td>
+                            <td><?php echo $post['created_at']; ?></td>
+                            <td><a href="index.php?page=editpost&id=<?php echo $post['id']; ?>">Edit</a></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>

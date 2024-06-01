@@ -50,13 +50,14 @@ class UserController {
             }
             $_SESSION['user_id'] = $userData['id'];
             $_SESSION['username'] = $userData['username'];
-            $_SESSION['role'] = $userData['role'];
+            $_SESSION['user_role'] = $userData['role'];
             // Return user ID and username in the response
             return [
                 'success' => true,
                 'message' => 'Login successful.',
                 'user_id' => $userData['id'],
-                'username' => $userData['username']
+                'username' => $userData['username'],
+                'user_role' => $userData['role'],
             ];
         } else {
             return ['success' => false, 'message' => 'Invalid username or password.'];

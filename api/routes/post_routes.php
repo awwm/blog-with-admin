@@ -14,19 +14,19 @@ $router->get('/posts/author/{author_name}', function ($request, $author_name) us
     return $postController->getPostsByAuthor($author_name);
 });
 
-$router->post('/posts', function ($request) use ($postController) {
+$router->post('/create-post', function ($request) use ($postController) {
     return $postController->createPost($request);
 });
 
-$router->get('/posts/{post_id}', function ($request, $post_id) use ($postController) {
+$router->get('/get-post/{post_id}', function ($request, $post_id) use ($postController) {
     return $postController->getSinglePost($post_id);
 });
 
-$router->put('/posts/{post_id}', function ($request, $post_id) use ($postController) {
+$router->put('/update-post/{post_id}', function ($request, $post_id) use ($postController) {
     return $postController->updatePost($post_id, $request);
 });
 
-$router->delete('/posts/{post_id}', function ($request, $post_id) use ($postController) {
+$router->delete('/delete-post/{post_id}', function ($request, $post_id) use ($postController) {
     return $postController->deletePost($post_id);
 });
 ?>

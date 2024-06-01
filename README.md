@@ -18,6 +18,7 @@ Before running the application, ensure you have the following installed:
 - Docker Compose: [Installation Guide](https://docs.docker.com/compose/install/)
 - Composer: [Installation Guide](https://getcomposer.org/download/)
 
+
 ```
 blog-with-admin
 ├─ .git
@@ -72,29 +73,37 @@ blog-with-admin
 │  │  ├─ 0e
 │  │  │  ├─ 8efa7fcf37df6b2cacd635b51586e0e800bc1d
 │  │  │  └─ e6fb46516e486c5ec52e5ac517821e9161a7c2
+│  │  ├─ 13
+│  │  │  ├─ 9ed45c933f8fc5fa9ed1f5ff102064943cf550
+│  │  │  └─ bc7c1ea0fc8e6c24699b761a55a37f46194938
 │  │  ├─ 14
 │  │  │  └─ 8434ab2b79ce2c0cde438b765f789881bc0794
 │  │  ├─ 17
 │  │  │  ├─ 55c5e230336d4edc84a7367b7c0efa370faa1d
 │  │  │  └─ f1016dcc929b307bdafa9ba679bc7754496a0b
 │  │  ├─ 18
+│  │  │  ├─ 005da15ef10b739530e7eba02f5a5a47070606
 │  │  │  └─ 36cc266901bec8639b27fca06c17a82db5d1a7
 │  │  ├─ 19
 │  │  │  └─ 01d9553ec8672d81b61418b9c460a3ed27ab74
 │  │  ├─ 1b
 │  │  │  └─ eb655e00f2688ac21eaddcaa34c16ba3268dea
 │  │  ├─ 1c
+│  │  │  ├─ 0de7fb0118a7dcc34f20de21efc7c08b2f0318
 │  │  │  ├─ 29c18824e052b4ae7f7735416f00d5d6565baf
 │  │  │  └─ d90fe7dac2987ef8da3b519a90e97375501b09
 │  │  ├─ 1f
-│  │  │  └─ a17dbc88fffddfed5af60982421b9013afd20c
+│  │  │  ├─ a17dbc88fffddfed5af60982421b9013afd20c
+│  │  │  └─ e8bb6bb07e9bb9b4de17df97c0e857176c1da3
 │  │  ├─ 20
 │  │  │  ├─ ad1b95e3a185a35faf4c057cc520f30d331f63
 │  │  │  └─ ef093986c66b95db0f75d0b4b6c38dd2de2e7e
 │  │  ├─ 21
+│  │  │  ├─ 96804103db18e7979a0697db6af1683427f1b6
 │  │  │  └─ 97bb10bb297eb06207847460682e94b380ea91
 │  │  ├─ 22
-│  │  │  └─ b58681d54dd497e02757685c5a04c4037c37d9
+│  │  │  ├─ b58681d54dd497e02757685c5a04c4037c37d9
+│  │  │  └─ c25e48761e62d1ddbc990fe01e230ca258e24e
 │  │  ├─ 23
 │  │  │  ├─ 9a2a62945943d6dad212ad05e39ee3b5ec56d3
 │  │  │  └─ c92a26828a25d2042d5d68d369032684310122
@@ -105,25 +114,31 @@ blog-with-admin
 │  │  ├─ 26
 │  │  │  └─ 68fa9228e9ce0e0042b606f698b44ea8cea7f2
 │  │  ├─ 27
-│  │  │  └─ 4bfdfc6eeda8910441c46480d207a82e86fa45
+│  │  │  ├─ 4bfdfc6eeda8910441c46480d207a82e86fa45
+│  │  │  └─ d28b649e9b8e17271d279b113dea72eba38a1b
 │  │  ├─ 28
 │  │  │  └─ 1f36b18bf5402380d7ff7765116aef3d48e505
 │  │  ├─ 2c
 │  │  │  └─ bd806d63773b2d3cbd7c3100e008d6b652b025
+│  │  ├─ 2d
+│  │  │  └─ d8c699ae519184b29b33a0400e0ed1abac1533
 │  │  ├─ 2e
 │  │  │  └─ 097bc200afbd4f6926499b9c5aff30f7a25088
 │  │  ├─ 31
 │  │  │  └─ 86b369a35fc3dd725163e35f7ae2f9426e2de2
 │  │  ├─ 32
+│  │  │  ├─ 462ea6615a86395a71da5227153f36f6bc1464
 │  │  │  └─ fbac397cf6b9b4aded7c58c797318f97198614
 │  │  ├─ 34
 │  │  │  ├─ 38ec9c0353e1ecdbbd0832880daa7497f2114b
+│  │  │  ├─ 77f4621904c1461a6772edef101dc31b75ba2f
 │  │  │  └─ e3e3d37155e17c80c0290c7bb449369c92f60c
 │  │  ├─ 3a
 │  │  │  └─ 62b33cae837308c6ba18fa1ede646bf168d20c
 │  │  ├─ 3d
 │  │  │  └─ 63137bee0db85775bc8602c1962969cc07db62
 │  │  ├─ 3e
+│  │  │  ├─ 16ee553034035a7a9c1044da1ee6b829409041
 │  │  │  ├─ 33d992995c55681cb68f2dd024ff5847673d0e
 │  │  │  └─ ce4fda9a39124e11922a07cc594bf041a4f3fe
 │  │  ├─ 40
@@ -133,17 +148,28 @@ blog-with-admin
 │  │  ├─ 43
 │  │  │  ├─ 11193aabd293607528328c9966469cc024b51d
 │  │  │  └─ b8c40a93204eebdefde7939d2bd6a2f81fe343
+│  │  ├─ 44
+│  │  │  └─ 6a9a9c8b20c3c04aacbe9af570ee6fc104f314
+│  │  ├─ 45
+│  │  │  └─ 623d4aae069d0ba54e1806c8941fc7634476fc
 │  │  ├─ 47
 │  │  │  └─ e40a438573c99bbef8f649692fc1dd558f3d4e
 │  │  ├─ 49
 │  │  │  └─ c71f155dbe6fbe26785a0d788338ebf8d3a62a
 │  │  ├─ 4a
+│  │  │  ├─ 06c773bbbca59267f7db4e40f6579f2e976c7e
 │  │  │  └─ 50142398d9b17b7464afff51695fbefea76c13
+│  │  ├─ 4b
+│  │  │  └─ 9e707f03dba0a095ca69c8d7e9e2af5abb83c7
+│  │  ├─ 4c
+│  │  │  └─ d559bec5cf988052d72c1ec68d5b73b92deea1
 │  │  ├─ 4d
 │  │  │  └─ bd457fe602b36a50654386afd6472f1a330614
 │  │  ├─ 4e
 │  │  │  ├─ 24d0400bf1aebb49ce25722d50c61c97f1a8b3
 │  │  │  └─ 94869d8f91c6817eaa101e76a2f853efcffd44
+│  │  ├─ 51
+│  │  │  └─ b3d375c2b09e84d3567f69d2c4f798af42b96d
 │  │  ├─ 53
 │  │  │  └─ 35503bd6c81e670a70746595cd1bc1b9ebe598
 │  │  ├─ 57
@@ -158,8 +184,10 @@ blog-with-admin
 │  │  │  ├─ 5371473e1899bcccc128cb3e7619f33aee5b5b
 │  │  │  └─ 5532659be5e0e9ba2ee3a2ee8b2db88f99ae88
 │  │  ├─ 5d
+│  │  │  ├─ d351a38d86946415ff7886dd55bdcf0d522ea3
 │  │  │  └─ dfd1a3609608358d40e8771d130e8ce066a471
 │  │  ├─ 5e
+│  │  │  ├─ a5c43b95f9c9798dc3b60d166a8e0a2554d42e
 │  │  │  └─ e5bba8e0565aab63d2527b05278d8e47c91025
 │  │  ├─ 5f
 │  │  │  ├─ 65bf9a07eff97ab5b2b97b2e152c998a235bdf
@@ -188,12 +216,17 @@ blog-with-admin
 │  │  ├─ 71
 │  │  │  └─ 748b6e14cd0164234d2c53d0ed7bca13121e10
 │  │  ├─ 73
-│  │  │  └─ 015ec64375c4f0e57048ca95fd0c513fd4c581
+│  │  │  ├─ 015ec64375c4f0e57048ca95fd0c513fd4c581
+│  │  │  └─ 566d34a21af5218b54130a0b55ad4c4c7530c2
+│  │  ├─ 75
+│  │  │  └─ e39faa417840d9f08cbd692f4d481253fc7a12
 │  │  ├─ 76
 │  │  │  └─ 4306c5459ed292c734b7ee44749a5efe7d359a
 │  │  ├─ 77
 │  │  │  ├─ 2ce879d905c7f631ce38249e76297963481dcb
 │  │  │  └─ 69e018a2943c623313bb7504495c71b4638eed
+│  │  ├─ 7e
+│  │  │  └─ bb0b50489f1f80ed5d2b0306d484dc2a220440
 │  │  ├─ 7f
 │  │  │  └─ dc5c334729b563cdaa47f9891221c8f99a8b56
 │  │  ├─ 80
@@ -209,9 +242,12 @@ blog-with-admin
 │  │  │  └─ 596fbe493e68901b6b85adaf47f642464f92ca
 │  │  ├─ 8c
 │  │  │  └─ 094e14f4270572d6e6444af17c72ecff4e625f
+│  │  ├─ 8e
+│  │  │  └─ 48ff96b8b66d076c2b1243c3419bac0104b52e
 │  │  ├─ 90
 │  │  │  ├─ 2e1d071d65daed24a234674b5755547156b091
-│  │  │  └─ b0360da0157b54ef5bfb8235b9d0de8e9b2b04
+│  │  │  ├─ b0360da0157b54ef5bfb8235b9d0de8e9b2b04
+│  │  │  └─ b4bdbd514d76c33a817adbaa9c949e95366f4f
 │  │  ├─ 93
 │  │  │  └─ bf0b6a6acf637069f212730dd29af6fce63d4a
 │  │  ├─ 94
@@ -219,13 +255,15 @@ blog-with-admin
 │  │  ├─ 95
 │  │  │  └─ d2ef9f2402411fe9de684607dc85ec9c4cb532
 │  │  ├─ 97
+│  │  │  ├─ 33e59e3c8ecde5783b7f19c9107b8b2c054a31
 │  │  │  └─ f2a9b9e3074db652a6928882e01fd78876666a
 │  │  ├─ 9a
 │  │  │  └─ eef622ff7c75806ece0c1f6d715bb9fcfcffa6
 │  │  ├─ 9b
 │  │  │  └─ 1bc4d1a4617ecab3905c9be4f4c9862c343bf7
 │  │  ├─ 9c
-│  │  │  └─ 6ab1eaa6fc5f9816617de8c33b4703afcce2d1
+│  │  │  ├─ 6ab1eaa6fc5f9816617de8c33b4703afcce2d1
+│  │  │  └─ df318b6d2e23259d16549fc32996b7629fc35e
 │  │  ├─ 9f
 │  │  │  ├─ 00502f031f9d5799d60365f8b7f55f6639f3d6
 │  │  │  ├─ d7e7eb7056f807531e591fb0e88f5efea8e6ba
@@ -240,15 +278,23 @@ blog-with-admin
 │  │  │  ├─ 463a560929bc2d1ec72fad3ca7b8f667c50f18
 │  │  │  ├─ 4641739a53419102db6e4e6cbca20f10a569b2
 │  │  │  └─ 5a4ec5db62d2a1ee60f16e215dcc8e5539d14f
+│  │  ├─ a4
+│  │  │  ├─ a7f841fd30998c88ad9c202298c4ff1410224e
+│  │  │  └─ d9ee36699a278e95405fa3e9bc0f0d4daf3645
 │  │  ├─ a5
 │  │  │  ├─ 812deea0fb3690cd9c4cc56fafbde95a2f92f4
 │  │  │  └─ c984d3bff01754c82241dfa54e191d1f6cb631
 │  │  ├─ a6
 │  │  │  └─ f18bfe1ae6cc294411a74c3e371f6a9d2c8e6a
+│  │  ├─ a7
+│  │  │  ├─ b0606385d3741a8c2c405cdf2e073538ec6c97
+│  │  │  └─ b90e2c81ff331ab201fced4a4f17a38b0e9276
 │  │  ├─ a8
 │  │  │  └─ 1436628ee704d656ba217b034c1adbf3dc4835
 │  │  ├─ aa
-│  │  │  └─ 3c180a33a7ca20c9ddfe747b7b9c04f09befb2
+│  │  │  ├─ 3c180a33a7ca20c9ddfe747b7b9c04f09befb2
+│  │  │  ├─ 52afdbdda5b4bac91fd36286e48aa1564ac292
+│  │  │  └─ 743c9599d10fb5361f366adb70622d00636bbe
 │  │  ├─ ab
 │  │  │  └─ f09dba49f9f413378f232d4a156c621576d263
 │  │  ├─ af
@@ -261,6 +307,7 @@ blog-with-admin
 │  │  │  ├─ 69f783ff96b19ffdab45acd2d4a816634fb3ce
 │  │  │  └─ fd36a9a02accea7d340408680395eeddfd9810
 │  │  ├─ b3
+│  │  │  ├─ 1620d63161369ee156dab9f9d7f024f5c9e842
 │  │  │  └─ 7d34e6e0206ac10f06f3785c8d12192e29ee87
 │  │  ├─ b8
 │  │  │  └─ 502151995d00a9f131bada1e6a1b926f209cd2
@@ -271,7 +318,14 @@ blog-with-admin
 │  │  ├─ bc
 │  │  │  └─ b8b6a6c6f43f0a35a75a4bf546086e20866afe
 │  │  ├─ bd
-│  │  │  └─ 206ca94141e8a837630f8e3cf4e7ea93c3eba2
+│  │  │  ├─ 206ca94141e8a837630f8e3cf4e7ea93c3eba2
+│  │  │  └─ aa4102f3925c31ce12ce429920c270984a520e
+│  │  ├─ be
+│  │  │  └─ 427b4caaf19e7b6c72f948fdd59fccb96763ef
+│  │  ├─ bf
+│  │  │  └─ b8345d319102f16a52db44e502be3311684b26
+│  │  ├─ c2
+│  │  │  └─ ad7424e0502a5bdb69d87e5f88132ee6f1b417
 │  │  ├─ c3
 │  │  │  └─ e65b40ed51b7ee1d8728bf563ec1fefb92dc1e
 │  │  ├─ c5
@@ -292,6 +346,8 @@ blog-with-admin
 │  │  │  └─ 1f779ffe857c350a556704ae244cec10844ce0
 │  │  ├─ d2
 │  │  │  └─ c0539f294b2a972f21634da6c4d51808eac6ce
+│  │  ├─ d3
+│  │  │  └─ 1130e0f62091881f154e1ff3dd957458fca77b
 │  │  ├─ d4
 │  │  │  └─ f00c3c99c984eddd822342e33a7267147f5d34
 │  │  ├─ d6
@@ -301,12 +357,19 @@ blog-with-admin
 │  │  │  └─ 293c5098789a8105c23f8556e84692548eddc9
 │  │  ├─ d8
 │  │  │  └─ 151f78e258d5f6eade9d812529c3502a8c1b45
+│  │  ├─ db
+│  │  │  └─ 768a9ff02e21fd7c186c366aaec40f2f2e01b7
 │  │  ├─ dd
 │  │  │  └─ 922e5362ade404450d9575321b8913c044f050
 │  │  ├─ de
 │  │  │  └─ 1d8731bb2fa7e05257bf8b49e468222ec10cb1
 │  │  ├─ df
+│  │  │  ├─ 0875af1a77c6726c40c120d2e5db9b1670454d
 │  │  │  └─ 6cd7ff4e7e783284ea84e5faaea9b84811fc1f
+│  │  ├─ e0
+│  │  │  └─ c4309c9dcd98d49bc3e6487b1322a3d381317b
+│  │  ├─ e4
+│  │  │  └─ 6f3d5b8ac96429b13822098b6f1659c48dd7dd
 │  │  ├─ e5
 │  │  │  └─ 33b93733871ee183dab5f6043748e2f57981e8
 │  │  ├─ e6
@@ -320,9 +383,13 @@ blog-with-admin
 │  │  │  ├─ 43509c56eca204abd5a7cc3840b05aa03931cc
 │  │  │  └─ b4e047e970829b04387d41a17ccaab3dc31544
 │  │  ├─ eb
-│  │  │  └─ 17ce1b113c7f2c2f3e39915348026e8857f6b1
+│  │  │  ├─ 17ce1b113c7f2c2f3e39915348026e8857f6b1
+│  │  │  ├─ 6c0542c26673b444c895f025a2c1574861978c
+│  │  │  └─ 6ec5fbf400359f3c953d6c877489c252ff9d51
 │  │  ├─ ec
 │  │  │  └─ 57182cfd25354c5b919a554eb8acc7ddbf8477
+│  │  ├─ f0
+│  │  │  └─ 5b6353e3b9eb148baac074dbfecb31772e50ff
 │  │  ├─ f2
 │  │  │  └─ ad4a30883a76e92baaf54ece70c61997a564be
 │  │  ├─ f4
@@ -330,8 +397,11 @@ blog-with-admin
 │  │  ├─ f6
 │  │  │  ├─ 09c7fd1ed21d538fd38896b529b24b11f7e6af
 │  │  │  └─ 4474df04f06302b704cdca4ca705929fb9157e
+│  │  ├─ f9
+│  │  │  └─ af5a247be380af2eef0bc03a92c08d0a402068
 │  │  ├─ fa
-│  │  │  └─ 5675ec2551f12d53296e49dbf91f15065994bb
+│  │  │  ├─ 5675ec2551f12d53296e49dbf91f15065994bb
+│  │  │  └─ a3ecc943bb2c983e946ce393693331e52ac77f
 │  │  ├─ fb
 │  │  │  └─ 148fba1f2805fc987032fe2c92ddde5dda9e84
 │  │  ├─ fc
@@ -340,6 +410,8 @@ blog-with-admin
 │  │  │  └─ f3c4080cdb8ac77766c9cc5430a9b60e103b06
 │  │  ├─ fe
 │  │  │  └─ 55806ad4bfd472f628a2f95577ba268303c03a
+│  │  ├─ ff
+│  │  │  └─ bbf96a06d189468eb984398486654ddfe2387a
 │  │  ├─ info
 │  │  └─ pack
 │  │     ├─ pack-e4a5aa0c1c749373d1fc49db8348e1b1a8972649.idx
@@ -360,8 +432,7 @@ blog-with-admin
 │  ├─ composer.json
 │  ├─ index.php
 │  ├─ scripts
-│  │  ├─ compile_scss.php
-│  │  └─ set_session.php
+│  │  └─ compile_scss.php
 │  └─ src
 │     ├─ assets
 │     │  ├─ css
@@ -369,8 +440,7 @@ blog-with-admin
 │     │  │  └─ styles.scss
 │     │  ├─ images
 │     │  └─ js
-│     │     ├─ login.js
-│     │     └─ signup.js
+│     │     └─ dashboard.js
 │     ├─ components
 │     │  ├─ Footer.php
 │     │  ├─ Header.php
@@ -387,6 +457,7 @@ blog-with-admin
 │        └─ Content.php
 ├─ api
 │  ├─ .env
+│  ├─ .htaccess
 │  ├─ composer.json
 │  ├─ config
 │  │  └─ Database.php
@@ -395,10 +466,14 @@ blog-with-admin
 │  │  ├─ PostController.php
 │  │  └─ UserController.php
 │  ├─ index.php
-│  └─ models
-│     ├─ Comment.php
-│     ├─ Post.php
-│     └─ User.php
+│  ├─ models
+│  │  ├─ Comment.php
+│  │  ├─ Post.php
+│  │  └─ User.php
+│  ├─ Router.php
+│  └─ routes
+│     ├─ post_routes.php
+│     └─ user_routes.php
 ├─ docker-compose.yml
 ├─ Dockerfile
 ├─ frontend
@@ -416,7 +491,6 @@ blog-with-admin
 │     ├─ controllers
 │     ├─ models
 │     └─ views
-├─ php.ini
 ├─ README.md
 └─ sql
    └─ init.sql
