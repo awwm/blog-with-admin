@@ -9,11 +9,10 @@
                 <div class="user-info">
                     <?php if ($loggedIn): ?>
                         <span>Welcome, <?php echo $username; ?></span>
-                        <a href="logout.php">Logout</a>
+                        <a href="index.php?page=signout">Logout</a>
                     <?php endif; ?>
                 </div>
             </header>
             <?php
         }
     }
-?>

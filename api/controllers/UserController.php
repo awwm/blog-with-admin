@@ -2,7 +2,6 @@
 namespace App\Controllers;
 
 use App\Models\User;
-use App\Helpers\AuthHelper;
 use PDO;
 
 class UserController {
@@ -28,8 +27,7 @@ class UserController {
         $result = $this->userModel->createUser($username, $email, $hashedPassword, $role);
 
         if ($result) {
-            $token = AuthHelper::generateJWT(['username' => $username, 'email' => $email, 'role' => $role]);
-            return ['success' => true, 'message' => 'User created successfully.', 'token' => $token];
+            return ['success' => true, 'message' => 'User created successfully.'];
         } else {
             return ['success' => false, 'message' => 'Failed to create user.'];
         }
@@ -46,8 +44,20 @@ class UserController {
         $userData = $this->userModel->getUserByUsername($username);
 
         if ($userData && password_verify($password, $userData['password'])) {
-            $token = AuthHelper::generateJWT(['username' => $userData['username'], 'email' => $userData['email'] ?? '', 'role' => $userData['role']]);
-            return ['success' => true, 'message' => 'Login successful.', 'token' => $token];
+            // Start session and set session variables
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            $_SESSION['user_id'] = $userData['id'];
+            $_SESSION['username'] = $userData['username'];
+            $_SESSION['role'] = $userData['role'];
+            // Return user ID and username in the response
+            return [
+                'success' => true,
+                'message' => 'Login successful.',
+                'user_id' => $userData['id'],
+                'username' => $userData['username']
+            ];
         } else {
             return ['success' => false, 'message' => 'Invalid username or password.'];
         }

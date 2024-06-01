@@ -8,14 +8,14 @@ class Navigation {
             <ul>
                 <?php if ($loggedIn): ?>
                     <li><a href="index.php?page=dashboard">Dashboard</a></li>
-                    <li><a href="logout.php">Logout</a></li>
+                    <li><a href="index.php?page=signout">Logout</a></li>
                 <?php else: ?>
                     <li><a href="index.php?page=login">Login</a></li>
                     <li><a href="index.php?page=signup">Sign Up</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
-        <?php
+    <?php
     }
 }
 ?>

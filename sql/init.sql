@@ -4,8 +4,9 @@ USE blog;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'editor', 'viewer') DEFAULT 'viewer',
+    role ENUM('admin', 'editor') DEFAULT 'editor',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -27,5 +28,5 @@ CREATE TABLE IF NOT EXISTS comments (
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
 
-INSERT INTO users (username, password, role) VALUES ('admin', '$2a$12$AOfkrEr2tY4okOxyWXF8F.dEb3pnhCiuzPJRdOwef5ha/f3gGX4SG', 'admin');
+INSERT INTO users (username, password, role) VALUES ('admin', 'admin@admin.com', '$2a$12$AOfkrEr2tY4okOxyWXF8F.dEb3pnhCiuzPJRdOwef5ha/f3gGX4SG', 'admin');
 -- password for testing is adminpassword
