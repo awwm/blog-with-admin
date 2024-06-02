@@ -8,7 +8,6 @@ Blog Website with Admin Portal
 - MySQL (for database)
 - HTML/CSS/JavaScript (for frontend)
 - Composer (for dependency management)
-- JWT (JSON Web Tokens) for authentication
 
 ## Prerequisites
 
