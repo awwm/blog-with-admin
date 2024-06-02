@@ -1,45 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frontend Home Page</title>
     <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./src/assets/css/styles.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/assets/css/styles.css" />
     <!-- Toastify CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.css"
+    />
 
     <!-- Toastify JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.js"></script>
     <!-- Meta Description for SEO -->
-    <meta name="description" content="Welcome to our blog where we share the latest posts and insights on various topics.">
-</head>
-<body class="bg-gray-100">
+    <meta
+      name="description"
+      content="Welcome to our blog where we share the latest posts and insights on various topics."
+    />
+  </head>
+
+  <body class="bg-gray-100">
     <!-- Navbar -->
-    <header class="bg-gray-800 text-white p-4">
-        <nav class="container mx-auto">
-            <span class="text-xl font-bold">Blog</span>
-            <!-- Add any navigation links here -->
-        </nav>
+    <header class="bg-gray-800 text-white">
+        <div class="container mx-auto">
+            <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg" >
+                <div>
+                  <a href="index.html">
+                    Blog Frontend
+                  </a>
+                </div>
+        
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  id="menu-button"
+                  class="h-6 w-6 cursor-pointer md:hidden block"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+        
+                <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
+                  <ul class="pt-4 text-base md:flex md:justify-between md:pt-0">
+                    <li>
+                        <a
+                          class="md:p-4 py-2 block hover:text-purple-400 text-white"
+                          href="http://localhost:8081/index.php?page=login"
+                          target="_blank"
+                          >Login</a
+                        >
+                      </li>
+                    <li>
+                      <a
+                        class="md:p-4 py-2 block hover:text-purple-400 text-white"
+                        href="http://localhost:8081/index.php?page=signup"
+                        target="_blank"
+                        >Sign Up</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+        </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto py-8">
-        <h1 class="text-3xl font-bold mb-4">Welcome to Our Blog</h1>
-        <section id="recent-posts" class="column-masonry">
-            <!-- Recent posts will be dynamically added here -->
-        </section>
+      <h1 class="text-3xl font-bold mb-4">Welcome to Our Blog</h1>
+      <section id="recent-posts" class="column-masonry">
+        <!-- Recent posts will be dynamically added here -->
+      </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white p-4 mt-8">
-        <div class="container mx-auto text-center">
-            <span>&copy; 2024 Blog. All rights reserved.</span>
-        </div>
+      <div class="container mx-auto text-center">
+        <span>&copy; 2024 Blog. All rights reserved.</span>
+      </div>
     </footer>
 
     <!-- JavaScript -->
     <script src="./src/assets/js/home.js"></script>
-</body>
+    <script src="./src/assets/js/common.js"></script>
+  </body>
 </html>
