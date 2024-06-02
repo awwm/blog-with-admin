@@ -1,5 +1,6 @@
 # Project Overview
 The Blog Website with Admin Portal project provides a full-featured blogging platform with an administrative interface, comprising the following components:
+
 **Frontend:**
 - Built using HTML, CSS, and JavaScript.
 - Styled with Tailwind CSS for a modern, responsive design.
@@ -49,4 +50,7 @@ Before running the application, ensure you have the following installed:
     - [Admin Panel](http:localhost:8081) at http://localhost:8081/index.php?page=signup we can signup as an admin or editor
         - Under [Admin Panel](http:localhost:8081) folder make sure we have ```/uploads/``` folder for processing and saving blog's featured image
     - [API Service](http://localhost:8082) an API service designed to manage CRUD (Create, Read, Update, Delete) operations for our application. This service acts as a backend engine that handles data manipulation and retrieval efficiently and securely.
+
+## Why I Used Different Technologies:
+I made sure to use a mix of technologies in this project to show I'm skilled in a variety of areas and to meet different job needs. Even though I could have just used Node.js for the API services, I chose PHP because the job seems to focus more on PHP skills. For the website's look and feel, I used HTML, CSS, and JavaScript, along with Tailwind CSS and Toastify-js to make things look nice and work smoothly. For the admin part, I went with PHP to show I'm good at server-side coding, adding Bootstrap to make it look professional and cURL to talk to the server efficiently. Docker was used to simplify deployment and ensure consistency across different setups, making it easier to manage the project's different parts. This way, I'm showing I can handle different tasks and adapt to what's needed for the job.
 
