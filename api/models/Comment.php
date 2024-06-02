@@ -1,4 +1,8 @@
 <?php
+namespace App\Models;
+
+use PDO;
+
 class Comment {
     // Database connection and table name
     private $conn;
@@ -17,7 +21,7 @@ class Comment {
     }
 
     // Create comment
-    public function create() {
+    public function createComment($post_id, $author, $content) {
         // Insert query
         $query = "INSERT INTO " . $this->table_name . " (post_id, author, content) VALUES (:post_id, :author, :content)";
 
@@ -25,9 +29,9 @@ class Comment {
         $stmt = $this->conn->prepare($query);
 
         // Sanitize input
-        $this->post_id = htmlspecialchars(strip_tags($this->post_id));
-        $this->author = htmlspecialchars(strip_tags($this->author));
-        $this->content = htmlspecialchars(strip_tags($this->content));
+        $this->author = strip_tags($author ?? ''); // Ensure $author is not null
+        $this->content = strip_tags($content ?? ''); // Ensure $content is not null
+        $this->post_id = strip_tags($post_id ?? ''); // Ensure $post_id is not null
 
         // Bind parameters
         $stmt->bindParam(":post_id", $this->post_id);

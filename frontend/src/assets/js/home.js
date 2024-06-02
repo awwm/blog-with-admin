@@ -36,9 +36,25 @@ function fetchRecentPosts() {
                 postElement.innerHTML = postHTML;
                 recentPostsElement.appendChild(postElement);
             });
+            showToast('Recent posts fetched successfully!', 'success');
         })
-        .catch(error => console.error('Error fetching recent posts:', error));
+        .catch(error => {
+            console.error('Error fetching recent posts:', error);
+            showToast('Failed to fetch recent posts. Please try again later.', 'error');
+        });
 }
 
 // Call the fetchRecentPosts function when the DOM is loaded
 document.addEventListener('DOMContentLoaded', fetchRecentPosts);
+
+// Function to show Toastify notification
+function showToast(message, type) {
+    Toastify({
+        text: message,
+        duration: 3000,
+        close: true,
+        gravity: 'top',
+        position: 'right',
+        backgroundColor: type === 'success' ? '#4CAF50' : '#F44336',
+    }).showToast();
+}

@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     // Get post ID from URL query parameters
     const queryParams = new URLSearchParams(window.location.search);
@@ -47,6 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
             postHTML += `</div>`;
             // Set the innerHTML of the post container
             postContainer.innerHTML = postHTML;
+            showToast('Single post fetched successfully!', 'success');
         })
-        .catch(error => console.error('Error fetching single post:', error));
+        .catch(error => {
+            console.error('Error fetching single post:', error);
+            showToast('Failed to fetch single post. Please try again later.', 'error');
+        });
 });
+
+// Function to show Toastify notification
+function showToast(message, type) {
+    Toastify({
+        text: message,
+        duration: 3000,
+        close: true,
+        gravity: 'top',
+        position: 'right',
+        backgroundColor: type === 'success' ? '#4CAF50' : '#F44336',
+    }).showToast();
+}

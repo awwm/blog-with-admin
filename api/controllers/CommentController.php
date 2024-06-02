@@ -1,30 +1,37 @@
 <?php
-require_once '../config/database.php';
-require_once '../models/Comment.php';
+namespace App\Controllers;
+
+use App\Models\Comment;
+use PDO;
 
 class CommentController {
     // Database connection
-    private $conn;
-    private $comment;
+    private $db;
+    private $commentModel;
 
-    public function __construct() {
-        $database = new Database();
-        $this->conn = $database->getConnection();
-        $this->comment = new Comment($this->conn);
+    public function __construct($db) {
+        $this->db = $db;
+        $this->commentModel = new Comment($db);
     }
 
     // Create a new comment
-    public function create($data) {
+    public function createComment($request) {
         // Set comment properties
-        $this->comment->post_id = $data['post_id'];
-        $this->comment->author = $data['author'];
-        $this->comment->content = $data['content'];
+        $post_id = $request['post_id'];
+        $author = $request['author'];
+        $content = $request['content'];
 
         // Create the comment
-        if ($this->comment->create()) {
-            return array("message" => "Comment created successfully.");
+        if (empty($post_id) || empty($author)) {
+            return ['success' => false, 'message' => 'All fields are required.'];
+        }
+
+        $result = $this->commentModel->createComment($post_id, $content,  $author);
+
+        if ($result) {
+            return ['success' => true, 'message' => 'Comment created successfully.'];
         } else {
-            return array("error" => "Comment creation failed.");
+            return ['success' => false, 'message' => 'Comment creation failed.'];
         }
     }
 
