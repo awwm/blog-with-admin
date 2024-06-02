@@ -35,7 +35,7 @@ INSERT INTO users (username, password, role) VALUES ('admin', 'admin@admin.com',
 -- password for testing is adminpassword
 
 -- Add dummy posts
-INSERT INTO posts (title, content, author) VALUES 
+INSERT INTO posts (title, content, author, status) VALUES 
 ('First Post', 'This is the content of the first post.', 1, 'published'),
 ('Second Post', 'This is the content of the second post.', 1, 'published'),
 ('Third Post', 'This is the content of the third post.', 1, 'published'),
