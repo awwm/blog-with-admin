@@ -49,6 +49,27 @@ class Comment {
         return false;
     }
 
+    // Get Post All Comment
+    public function getPostComments($post_id) {
+        // Select query by post ID
+        $query = "SELECT * FROM " . $this->table_name . " WHERE post_id = :post_id";
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameter
+        $sanitized_post_id = (int)($post_id ?? 0); // Ensure $post_id is an integer
+        $stmt->bindParam(":post_id", $sanitized_post_id, PDO::PARAM_INT);
+
+        // Execute query
+        $stmt->execute();
+
+        // Fetch all post comments
+        $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $comments;
+    }
+
     // Other CRUD methods can be implemented similarly
 }
 ?>

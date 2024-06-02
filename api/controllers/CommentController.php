@@ -35,6 +35,10 @@ class CommentController {
         }
     }
 
+    public function getPostComments($post_id) {
+        return $this->commentModel->getPostComments($post_id);
+    }
+
     // Other CRUD operations can be implemented similarly
 }
 ?>
