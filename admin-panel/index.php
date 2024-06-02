@@ -88,20 +88,25 @@ switch ($page) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="src/assets/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- Tiny MCe -->
+    <script src="vendor/tinymce/tinymce/tinymce.min.js"></script>
 </head>
 <body>
-    <?php $header->render(isset($_SESSION['user_id']), $_SESSION['user_id'] ?? null); ?>
+    <?php $header->render(isset($_SESSION['user_id']), $_SESSION['username'] ?? null); ?>
 
     <?php if (isset($_SESSION['user_id'])): ?>
-        <?php $navigation->render(true); ?>
+        <?php // $navigation->render(true); ?>
     <?php endif; ?>
 
     <?php $content->render($pageContent); ?>
 
     <?php $footer->render(); ?>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <?php

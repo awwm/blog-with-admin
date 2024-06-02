@@ -39,6 +39,7 @@ class AuthMiddleware {
                 $_SESSION['user_id'] = $response['user_id'];
                 $_SESSION['user_logged_in'] = true;
                 $_SESSION['user_role'] = $response['user_role'];
+                $_SESSION['username'] = $response['username'];
 
                 return ['success' => true];
             } else {

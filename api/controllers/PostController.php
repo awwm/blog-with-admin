@@ -36,12 +36,14 @@ class PostController
         $title = $request['title'] ?? '';
         $content = $request['content'] ?? '';
         $author = $request['author'] ?? '';
+        $featured_image = $request['featured_image'] ?? '';
+        $status =  $request['status'] ?? '';
 
-        if (empty($title) || empty($content) || empty($author)) {
+        if (empty($title) || empty($author)) {
             return ['success' => false, 'message' => 'All fields are required.'];
         }
 
-        $result = $this->postModel->createPost($title, $content, $author);
+        $result = $this->postModel->createPost($title, $content, $featured_image, $author, $status);
 
         if ($result) {
             return ['success' => true, 'message' => 'Post created successfully.'];

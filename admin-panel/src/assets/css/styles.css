@@ -1,0 +1,12 @@
+html, body {
+    height: 100%; /* Full viewport height */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+header, footer {
+    flex-shrink: 0; /* Keeps header and footer at their natural height */
+}
+main {
+    flex-grow: 1;
+}

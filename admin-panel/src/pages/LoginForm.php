@@ -27,12 +27,25 @@ class LoginForm {
         }
         // HTML form for login
         ?>
-        <form method="POST" action="">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="index.php?page=signup">Signup</a></p>
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-xl-6 col-lg-8 col-12">
+                <div class="card p-4 shadow-lg">
+                    <h2 class="text-center">Login</h2>
+                    <form method="POST" action="">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    <p class="mt-3 text-center">Don't have an account? <a href="index.php?page=signup">Sign up</a></p>
+                </div>
+            </div>
+        </div>
     <?php
     }
 }

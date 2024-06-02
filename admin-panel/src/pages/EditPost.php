@@ -60,8 +60,10 @@ class EditPost {
         // Check the response status
         if ($response['httpCode'] === 200) {
             $post = $this->fetchPostData();
+            echo '<div class="alert alert-success" role="alert">';
+            echo '<span class="bi bi-check-circle"></span> Post updated successfully.';
+            echo '</div>';
             $this->renderEditForm($post);
-            echo "Post updated successfully.";
         } else {
             echo "Failed to update post.";
         }

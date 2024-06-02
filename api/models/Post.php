@@ -15,6 +15,8 @@ class Post
     public $title;
     public $content;
     public $author;
+    public $featured_image;
+    public $status;
     public $created_at;
 
     // Constructor with $db as database connection
@@ -24,10 +26,10 @@ class Post
     }
 
     // Create post
-    public function createPost($title, $content, $author)
+    public function createPost($title, $content, $featured_image, $author, $status)
     {
         // Insert query
-        $query = "INSERT INTO " . $this->table . " (title, content, author) VALUES (:title, :content, :author)";
+        $query = "INSERT INTO " . $this->table . " (title, content, featured_image, author, status) VALUES (:title, :content, :featured_image, :author, :status)";
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -35,7 +37,9 @@ class Post
         // Bind parameters
         $stmt->bindParam(":title", $title);
         $stmt->bindParam(":content", $content);
+        $stmt->bindParam(":featured_image", $featured_image);
         $stmt->bindParam(":author", $author);
+        $stmt->bindParam(":status", $status);
 
         // Execute query
         return $stmt->execute();
@@ -45,7 +49,9 @@ class Post
     public function getAllPosts()
     {
         // Select all query
-        $query = "SELECT * FROM " . $this->table;
+        $query = "SELECT posts.*, users.username as author_name 
+                    FROM " . $this->table . " 
+                    JOIN users ON posts.author = users.id";
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
