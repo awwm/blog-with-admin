@@ -45,11 +45,32 @@ class EditPost {
     }
 
     private function handleFormSubmission() {
+        // Check if a file was uploaded
+        if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
+            // Define upload directory
+            $uploadDir = __DIR__ . '/../../uploads/';
+
+            // Generate a unique filename
+            $fileName = uniqid('image_') . '_' . time() . '.' . pathinfo($_FILES['featured_image']['name'], PATHINFO_EXTENSION);
+
+            // Upload the file to the server
+            $uploadPath = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['featured_image']['tmp_name'], $uploadPath)) {
+                // File uploaded successfully, save the file path in the database
+                $imagePath = '/uploads/' . $fileName;
+                // Include database saving logic here
+            } else {
+                echo "Failed to upload image.";
+                return;
+            }
+        }
+
         // Prepare data for the cURL POST request
         $postData = [
             'post_id' => $this->postId,
             'title' => $_POST['title'],
             'content' => $_POST['content'],
+            'featured_image' => $imagePath,
             'status' => $_POST['status']
         ];
 

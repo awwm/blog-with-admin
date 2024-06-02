@@ -6,10 +6,10 @@ if (isset($_GET['message']) && $_GET['message'] == 'OK') {
 <div class="my-3">
     <div class="row">
         <div class="col-md-6">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search posts" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">&#128270;</span>
+                <input id="searchInput" class="form-control me-2" type="search" placeholder="Search posts" aria-label="Search">
+            </div>
         </div>
         <div class="col-md-6 text-end">
             <a href="index.php?page=addnewpost" class="btn btn-success">Add New Post</a>

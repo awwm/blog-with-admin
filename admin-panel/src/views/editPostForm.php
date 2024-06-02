@@ -29,9 +29,16 @@
 
         <div class="mb-3">
             <label for="featured_image" class="form-label">Featured Image:</label>
-            <input type="file" id="featured_image" name="featured_image" class="form-control">
+            <input type="file" id="featured_image" name="featured_image" class="form-control" accept="image/*">
             <!-- You can add additional styling or functionality for file input if needed -->
         </div>
+
+        <?php if (!empty($post['featured_image'])): ?>
+            <div class="mb-3">
+                <label>Featured Image:</label><br>
+                <img src="<?php echo $post['featured_image']; ?>" alt="Featured Image" class="img-thumbnail">
+            </div>
+        <?php endif; ?>
 
         <div class="mb-3">
             <button type="submit" class="btn btn-primary">Save</button>

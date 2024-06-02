@@ -61,13 +61,14 @@ class PostController
     {
         $title = $request['title'] ?? '';
         $content = $request['content'] ?? '';
+        $featured_image = $request['featured_image'] ?? '';
         $status = $request['status'] ?? '';
 
-        if (empty($title) || empty($content)) {
-            return ['success' => false, 'message' => 'Title and content are required.'];
+        if (empty($title)) {
+            return ['success' => false, 'message' => 'Title is required.'];
         }
 
-        $result = $this->postModel->updatePost($postId, $title, $content, $status);
+        $result = $this->postModel->updatePost($postId, $title, $content, $featured_image, $status);
 
         if ($result) {
             return ['success' => true, 'message' => 'Post updated successfully.'];

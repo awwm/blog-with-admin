@@ -6,7 +6,7 @@
             <header>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container">
-                        <a class="navbar-brand" href="index.php">
+                        <a class="navbar-brand" href="index.php?page=dashboard">
                             Admin Panel
                         </a>
                         <?php if ($loggedIn): ?>

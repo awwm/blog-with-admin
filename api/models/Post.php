@@ -129,10 +129,10 @@ class Post
     }
 
     // Update post
-    public function updatePost($postId, $title, $content, $status)
+    public function updatePost($postId, $title, $content, $featured_image, $status)
     {
         // Update query
-        $query = "UPDATE " . $this->table . " SET title = :title, content = :content, status = :status WHERE id = :postId";
+        $query = "UPDATE " . $this->table . " SET title = :title, content = :content, featured_image = :featured_image, status = :status WHERE id = :postId";
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -140,6 +140,7 @@ class Post
         // Bind parameters
         $stmt->bindParam(":title", $title);
         $stmt->bindParam(":content", $content);
+        $stmt->bindParam(":featured_image", $featured_image);
         $stmt->bindParam(":status", $status);
         $stmt->bindParam(":postId", $postId);
 

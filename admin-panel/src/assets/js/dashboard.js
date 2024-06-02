@@ -25,4 +25,23 @@ document.addEventListener("DOMContentLoaded", function() {
             header.classList.toggle(order === 1 ? "sorted-asc" : "sorted-desc");
         });
     });
+
+    // Check if searchInput element exists before adding event listener
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        const tableRows = document.querySelectorAll('#postsTable tbody tr');
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.trim().toLowerCase();
+
+            tableRows.forEach(function (row) {
+                const titleColumn = row.querySelector('td:nth-child(2)'); // Assuming title is the second column
+
+                if (titleColumn.textContent.toLowerCase().includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    }
 });
