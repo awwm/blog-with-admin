@@ -11,7 +11,7 @@ function fetchRecentPosts() {
             const recentPostsElement = document.getElementById('recent-posts');
             posts.forEach(post => {
                 const postElement = document.createElement('article');
-                postElement.classList.add('group', 'w-full', 'md:w-1/3', 'p-4');
+                postElement.classList.add('masonry-item', 'p-4');
                 // Construct the initial HTML for the post
                 let postHTML = `
                 <div class="bg-white p-4 rounded shadow">

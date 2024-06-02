@@ -1,3 +1,25 @@
 body {
   padding: 0;
 }
+
+.column-masonry {
+  columns: 3;
+    column-gap: 0.5rem;
+}
+
+.masonry-item {
+  display: inline-block;
+    width: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .column-masonry {
+    columns: 2;
+  }
+}
+
+@media only screen and (max-width: 628px) {
+  .column-masonry {
+    columns: 1;
+  }
+}
