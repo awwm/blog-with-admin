@@ -111,7 +111,10 @@ class Post
     public function getSinglePost($postId)
     {
         // Select query by post ID
-        $query = "SELECT * FROM " . $this->table . " WHERE id = :postId";
+        $query = "SELECT posts.*, users.username as author_name 
+                FROM " . $this->table . " 
+                JOIN users ON posts.author = users.id 
+                WHERE posts.id = :postId";
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);

@@ -1,10 +1,12 @@
 <?php
 // Include the Composer autoloader
 require_once __DIR__ . '/vendor/autoload.php';
+require_once('cors.php');
 
 use App\Config\Database;
 use App\Controllers\UserController;
 use App\Controllers\PostController;
+use App\Controllers\CommentController;
 use App\Router;
 
 // Start session
@@ -17,6 +19,7 @@ $db = $database->getConnection();
 // Instantiate the controllers
 $userController = new UserController($db);
 $postController = new PostController($db);
+$commentController = new CommentController($db);
 
 // Create a router instance
 $router = new Router();
@@ -24,6 +27,7 @@ $router = new Router();
 // Include route files
 include_once __DIR__ . '/routes/user_routes.php';
 include_once __DIR__ . '/routes/post_routes.php';
+include_once __DIR__ . '/routes/comment_routes.php';
 
 // Get request method and URI
 $method = $_SERVER['REQUEST_METHOD'];
